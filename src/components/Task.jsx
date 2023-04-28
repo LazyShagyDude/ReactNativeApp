@@ -1,4 +1,5 @@
 import { View,Text, StyleSheet, Image,TouchableOpacity } from 'react-native';
+import {Post} from '../components/Post';
 
 export const Task = () =>{
     return(
@@ -12,7 +13,7 @@ export const Task = () =>{
             source={require('../icon/But.png')}
             />
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => Post}>
             <View style={styles.rightview}>
                 <Text style={styles.titletext}>Заменить батарейку</Text>
                 <View style={styles.textimg}>
