@@ -11,7 +11,7 @@ export const Header = () =>{
 
 const styles = StyleSheet.create({
   header:{
-    height: 135,
+    height: 125,
     //backgroundColor: "green",
     //display: 'flex',
     justifyContent: 'flex-end',

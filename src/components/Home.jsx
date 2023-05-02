@@ -9,11 +9,6 @@ export const Home = () =>{
         <Header />
         <ScrollView>
         <Task/>
-        <Task/>
-        <Task/>
-        <Task/>
-        <Task/>
-        <Task/>
         </ScrollView>
       <StatusBar theme="auto" />
       </View>

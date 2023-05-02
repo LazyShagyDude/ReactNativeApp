@@ -3,6 +3,8 @@ import { BottomSheet } from 'react-native-sheet';
 import { useRef, useState } from 'react';
 import MaskInput, { Masks } from 'react-native-mask-input'
 import { ScrollView } from 'react-native-gesture-handler';
+import { FIRESTORE_DB } from '../../firebaseConfig';
+import { addDoc, collection } from 'firebase/firestore';
 
 export const Post = () =>{
   const bottomSheet = useRef(null);
@@ -19,9 +21,18 @@ export const Post = () =>{
   const TimeMask = [/\d/, /\d/, ':', /\d/, /\d/];
   const PhoneMask = ['+', /\d/, '-', /\d/,  /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/,  /\d/, '-', /\d/,  /\d/];
 
+
+  const addTodo = async () =>{
+    const doc = await addDoc(collection(FIRESTORE_DB, 'todos'),
+    {title: Tasktext,name:Nametext,phone:number,street:Street,numberhome:NumberHome,door:Door,floor:Floor,date:Date,time:Time});
+  }
+
     return(
       <View>
       <BottomSheet height={750} ref={bottomSheet}>
+        <TouchableOpacity style={{alignContent:'center',alignItems:'flex-end', marginRight:20}} onPress={() => addTodo()}> 
+          <Text style={styles.gotovotext}>Готово</Text>
+        </TouchableOpacity>
         <ScrollView>
         <View>
         <Text style={styles.texthead}>Заявка</Text>
@@ -120,6 +131,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 20,
+  },
+  gotovotext:{
+    fontSize: 18,
+    color: '#4DA3D3',
+    fontWeight: 600,
+    display: 'flex',
   },
 
 })
