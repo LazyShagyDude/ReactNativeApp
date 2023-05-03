@@ -1,7 +1,12 @@
 import { View,Text, StyleSheet, Image,TouchableOpacity } from 'react-native';
 import {Post} from '../components/Post';
+import { FIRESTORE_DB } from '../../firebaseConfig';
+import { addDoc, collection, onSnapshot, snapshotEqual } from 'firebase/firestore';
+import { useEffect, useRef, useState } from 'react';
 
-export const Task = () =>{
+
+export const Task = ({title, date, door, floor, name, numberhome, phone, street, time} ) =>{
+
     return(
         <View style={styles.taskview}>
             <View style={styles.lefttaskview}>
@@ -15,24 +20,24 @@ export const Task = () =>{
             </View>
             <TouchableOpacity onPress={() => Post}>
             <View style={styles.rightview}>
-                <Text style={styles.titletext}>Заменить батарейку</Text>
+                <Text style={styles.titletext}>{title}</Text>
                 <View style={styles.textimg}>
                 <Image
                 source={require('../icon/Local.png')}
                 />
-                <Text style={styles.addrestext}>Гражданский проспект, 9к5</Text>
+                <Text style={styles.addrestext}>{street}</Text>
                 </View>
                 <View style={styles.textimg}>
                 <Image
                 source={require('../icon/timing.png')}
                 />
-                <Text style={styles.timetext}>Приехать с : 12:00 -14:00</Text>
+                <Text style={styles.timetext}>Приехать в {time}</Text>
                 </View>
                 <View style={styles.textimg}>
                 <Image
                 source={require('../icon/mobile.png')}
                 />
-                <Text style={styles.phonetext}>+7-987-654-32-10</Text>
+                <Text style={styles.phonetext}>{phone}</Text>
                 </View>
             </View>
         </TouchableOpacity>
