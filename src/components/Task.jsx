@@ -1,24 +1,24 @@
 import { View,Text, StyleSheet, Image,TouchableOpacity } from 'react-native';
-import {Post} from '../components/Post';
-import { FIRESTORE_DB } from '../../firebaseConfig';
-import { addDoc, collection, onSnapshot, snapshotEqual } from 'firebase/firestore';
-import { useEffect, useRef, useState } from 'react';
-
+import { FullTask } from './FullTask';
+import { useRef } from 'react';
+import { BottomSheet } from 'react-native-sheet';
 
 export const Task = ({title, date, door, floor, name, numberhome, phone, street, time} ) =>{
+
+    const bottomSheet = useRef(null);
+
 
     return(
         <View style={styles.taskview}>
             <View style={styles.lefttaskview}>
             <View style={styles.dataview}>
-                <Text style={styles.textup}>12</Text>
-                <Text style={styles.textdown}>апреля</Text>
+                <Text style={styles.textup}>{time}</Text>
             </View>
             <Image
             source={require('../icon/But.png')}
             />
             </View>
-            <TouchableOpacity onPress={() => Post}>
+            <TouchableOpacity onPress={() => bottomSheet.current.show()}>
             <View style={styles.rightview}>
                 <Text style={styles.titletext}>{title}</Text>
                 <View style={styles.textimg}>
@@ -29,9 +29,9 @@ export const Task = ({title, date, door, floor, name, numberhome, phone, street,
                 </View>
                 <View style={styles.textimg}>
                 <Image
-                source={require('../icon/timing.png')}
+                source={require('../icon/User.png')}
                 />
-                <Text style={styles.timetext}>Приехать в {time}</Text>
+                <Text style={styles.timetext}>{name}</Text>
                 </View>
                 <View style={styles.textimg}>
                 <Image
@@ -40,6 +40,9 @@ export const Task = ({title, date, door, floor, name, numberhome, phone, street,
                 <Text style={styles.phonetext}>{phone}</Text>
                 </View>
             </View>
+            <BottomSheet height={750} ref={bottomSheet}>
+                <FullTask title={title} date={date} door={door} floor={floor} name={name} numberhome={numberhome} phone={phone} street={street} time={time}/>
+            </BottomSheet>
         </TouchableOpacity>
         </View>
     );
@@ -50,8 +53,6 @@ const styles = StyleSheet.create({
         marginTop: 25,
         marginRight:22,
         marginLeft:17,
-        //backgroundColor: '#D9D9D9',
-        //display: 'flex',
         justifyContent: 'flex-start',
         flexDirection: 'row',
         alignItems:'center',
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     textup:{
-        fontSize: 20,
+        fontSize: 18,
         fontStyle: 'normal',
         lineHeight: 24,
     },

@@ -27,7 +27,8 @@
     "react-native-reanimated": "~2.14.4",
     "react-native-sheet": "^0.1.6",
     "react-native-web": "~0.18.11",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "typescript": "^4.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

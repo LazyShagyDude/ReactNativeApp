@@ -1,13 +1,12 @@
-
 import { ScrollView } from 'react-native';
-import { Header } from '../components/Header';
+import { HisHead } from '../components/HisHead';
 import { Compl } from '../components/Compl';
 import { View, StatusBar,StyleSheet } from 'react-native';
 
 export const History = () =>{
     return(
       <View style={styles.HomeView}>
-        <Header />
+        <HisHead />
         <ScrollView>
         <Compl/>
         </ScrollView>
